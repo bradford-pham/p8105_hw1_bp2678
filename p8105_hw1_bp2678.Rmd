@@ -1,1 +1,7 @@
-# p8105_hw1_bp2678
+---
+title: "p8105_hw1_bp2678"
+author: "Brady Pham"
+date: 2023-09-22
+output: html_document
+## 
+---
