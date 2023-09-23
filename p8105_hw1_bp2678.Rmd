@@ -29,3 +29,22 @@ mean_temperature <- mean(early_january_weather$temp, na.rm = TRUE)
 
 The mean temperature 39.5821
 
+
+```{r}
+library (ggplot2)
+library(tidyverse)
+```
+
+```{r yx_scatter}
+
+scatterplot <- early_january_weather %>%
+  ggplot(aes(x = time_hour, y =temp, color = humid)) + geom_point()
+scatterplot
+```
+
+```{r}
+ggsave(filename = "scatterplot.png",
+       plot = scatterplot,           
+       width = 6,                    
+       height = 4)                 
+```
