@@ -5,3 +5,19 @@ date: 2023-09-22
 output: html_document
 ## 
 ---
+```{r setup, include = FALSE}
+library(moderndive)
+data("early_january_weather")
+
+```
+
+the variables for this dataset is year, month, day, hour, temp, humidity, wind direction,
+wind speed, and pressure. 
+
+```{r setup, include = FALSE}
+num_rows <- nrow(early_january_weather)
+num_columns <- ncol(early_january_weather)
+
+```
+
+There are 15 columns and 358 rows! 
