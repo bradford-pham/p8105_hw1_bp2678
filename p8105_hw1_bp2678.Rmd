@@ -6,16 +6,33 @@ output: github_document
 ## 
 ---
 
-#Problem 1
+# Problem 1
 
 ```{r}
 library(moderndive)
 data("early_january_weather")
+help("early_january_weather")
 
 ```
 
-the variables for this dataset is year, month, day, hour, temp, humidity, wind direction,
-wind speed, and pressure. 
+the variables for this dataset is 
+
+*   origin (weather station)
+*   year (time of recording)
+*   month (time of recording)
+*   day (time of recording)
+*   hour(time of recording) 
+*   temperature (in F)
+*   dewpoint (in F)
+*   realitve humidity
+*   wind direction (in degrees)
+*   wind speed (in mph)
+*   wind gust speed (in mph)
+*   precipitation (in inches)
+*   sea level pressure (in millibars)
+*   visibility (in miles)
+*   time hour (date and hour of the recording as a posixct date)
+
 
 ```{r}
 num_rows <- nrow(early_january_weather)
@@ -45,6 +62,8 @@ scatterplot <- early_january_weather %>%
 scatterplot
 ```
 
+The plot shows a general trend of the temperature increasing throughout the month. It does seems like during the day and night that the temperature fluctuates however it stil stays in the same trend. Addiitonally, it looks like the day after Janurary 14th that the temperature is going to decrease a lot. 
+
 ```{r}
 ggsave(filename = "scatterplot.png",
        plot = scatterplot,           
@@ -52,16 +71,45 @@ ggsave(filename = "scatterplot.png",
        height = 4)                 
 ```
 
-#Problem 2 
+
+# Problem 2 
 
 ```{r}
-random_sample <- rnorm(10)
-logical_vector <- random_sample > 0
-character_vector <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J")
-factor_vector <- factor(c("red", "green", "blue", "red", "green", "blue", "red", "green", "blue", "red"),
-                        levels = c("red", "green", "blue"))
-
+problem2_df = tibble(
+  random_sample = rnorm(10),
+logical_vector = random_sample > 0,
+character_vector = c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J"),
+factor_vector = factor(c("red", "green", "blue", "red", "green", "blue", "red", "green", "blue", "red"),
+                        levels = c("red", "green", "blue")))
+problem2_df
    
 ```
+
+```{r}
+mean(pull(problem2_df, 'random_sample'))
+
+mean(pull(problem2_df,'logical_vector'))
+
+mean(pull(problem2_df, 'character_vector'))
+
+mean(pull(problem2_df, 'factor_vector'))
+```
+
+The ones that work is the random sample and logical vecotr and 
+the one that doesn't work is character vector and factor vector.
+
+
+```{r results = "hide", warning = FALSE}
+
+as.numeric(pull(problem2_df, logical_vector))
+
+as.numeric(pull(problem2_df, character_vector))
+  
+as.numeric(pull(problem2_df, factor_vector))
+```
+
+When the as.numeric funciton is run with the variables logical_vector, character_vector, and factor_vector only logical_vector an factor_vector ran sucessfully. character_vector variable showed up as N/A. The reason for this is because logical_vector is orignally assigned as true or false so R set it as 0 and 1. For factor_vector it corresponds to the 3 levels that were assigned hence 1, 2, and 3. For character_Vector, R is not able to assign an numeric equivalent to the variables hence why it shows up as N/A. This does help explain what happens when we take the mean. 
+
+
 
 
