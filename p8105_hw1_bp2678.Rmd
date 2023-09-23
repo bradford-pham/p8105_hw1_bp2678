@@ -14,10 +14,18 @@ data("early_january_weather")
 the variables for this dataset is year, month, day, hour, temp, humidity, wind direction,
 wind speed, and pressure. 
 
-```{r setup, include = FALSE}
+```{r}
 num_rows <- nrow(early_january_weather)
 num_columns <- ncol(early_january_weather)
 
 ```
 
 There are 15 columns and 358 rows! 
+
+```{r}
+mean_temperature <- mean(early_january_weather$temp, na.rm = TRUE)
+
+```
+
+The mean temperature 39.5821
+
